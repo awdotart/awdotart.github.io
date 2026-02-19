@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awart | Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <header class="hero" id="inicio">
+    <nav class="topbar">
+      <a class="logo" href="#inicio">Awart</a>
+      <div class="menu">
+        <a href="#galerias">Galerias</a>
+        <a href="#sobre">Sobre mi</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+
+    <div class="hero-content reveal">
+      <p class="eyebrow">Portfolio personal</p>
+      <h1>Una web principal con carruseles de 6 imagenes</h1>
+      <p class="lead">
+        Carruseles automaticos que muestran 2 o 3 tarjetas visibles segun el tamano de pantalla.
+      </p>
+      <a class="btn" href="#galerias">Ver carruseles</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section reveal" id="galerias">
+      <div class="section-heading">
+        <p class="eyebrow">Seccion 01</p>
+        <h2>Galeria urbana</h2>
+      </div>
+
+      <div class="carousel" data-autoplay="3200">
+        <div class="carousel-window">
+          <div class="track">
+            <article class="card">
+              <img src="content/urban/urban-1.svg" alt="Galeria urbana 1" loading="lazy" />
+              <p class="caption">Noche y arquitectura.</p>
+            </article>
+            <article class="card">
+              <img src="content/urban/urban-2.svg" alt="Galeria urbana 2" loading="lazy" />
+              <p class="caption">Ritmo visual en calles.</p>
+            </article>
+            <article class="card">
+              <img src="content/urban/urban-3.svg" alt="Galeria urbana 3" loading="lazy" />
+              <p class="caption">Luces intensas y sombras.</p>
+            </article>
+            <article class="card">
+              <img src="content/urban/urban-4.svg" alt="Galeria urbana 4" loading="lazy" />
+              <p class="caption">Color y textura de ciudad.</p>
+            </article>
+            <article class="card">
+              <img src="content/urban/urban-5.svg" alt="Galeria urbana 5" loading="lazy" />
+              <p class="caption">Geometria y detalle.</p>
+            </article>
+            <article class="card">
+              <img src="content/urban/urban-6.svg" alt="Galeria urbana 6" loading="lazy" />
+              <p class="caption">Perspectivas modernas.</p>
+            </article>
+          </div>
+        </div>
+        <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
+        <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-heading">
+        <p class="eyebrow">Seccion 02</p>
+        <h2>Galeria naturaleza</h2>
+      </div>
+
+      <div class="carousel" data-autoplay="3600">
+        <div class="carousel-window">
+          <div class="track">
+            <article class="card">
+              <img src="content/nature/nature-1.svg" alt="Galeria naturaleza 1" loading="lazy" />
+              <p class="caption">Paleta organica y calma.</p>
+            </article>
+            <article class="card">
+              <img src="content/nature/nature-2.svg" alt="Galeria naturaleza 2" loading="lazy" />
+              <p class="caption">Escena abierta y limpia.</p>
+            </article>
+            <article class="card">
+              <img src="content/nature/nature-3.svg" alt="Galeria naturaleza 3" loading="lazy" />
+              <p class="caption">Composicion con profundidad.</p>
+            </article>
+            <article class="card">
+              <img src="content/nature/nature-4.svg" alt="Galeria naturaleza 4" loading="lazy" />
+              <p class="caption">Color suave y equilibrio.</p>
+            </article>
+            <article class="card">
+              <img src="content/nature/nature-5.svg" alt="Galeria naturaleza 5" loading="lazy" />
+              <p class="caption">Detalle natural para portada.</p>
+            </article>
+            <article class="card">
+              <img src="content/nature/nature-6.svg" alt="Galeria naturaleza 6" loading="lazy" />
+              <p class="caption">Bloques listos para reemplazar.</p>
+            </article>
+          </div>
+        </div>
+        <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
+        <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="section about reveal" id="sobre">
+      <div class="section-heading">
+        <p class="eyebrow">Seccion 03</p>
+        <h2>Sobre mi</h2>
+      </div>
+      <p>
+        Usa este bloque para presentarte: quien eres, que haces y que tipo de proyectos quieres mostrar.
+      </p>
+      <div class="tags">
+        <span>Diseno visual</span>
+        <span>Fotografia</span>
+        <span>Web personal</span>
+      </div>
+    </section>
+
+    <section class="section contact reveal" id="contacto">
+      <div class="section-heading">
+        <p class="eyebrow">Seccion 04</p>
+        <h2>Contacto</h2>
+      </div>
+      <p>Agrega tu correo o enlaces de redes para que te contacten.</p>
+      <a class="btn btn-secondary" href="mailto:tu-correo@dominio.com">Escribeme</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Awart. Hecho para GitHub Pages.</p>
+  </footer>
+</body>
+</html>
