@@ -60,31 +60,53 @@ a {
 }
 
 .hero {
-  padding: 20px clamp(20px, 4vw, 56px) 70px;
+  padding: 86px clamp(20px, 4vw, 56px) 70px;
 }
 
 .topbar {
+  position: fixed;
+  top: 7px;
+  left: clamp(20px, 4vw, 56px);
+  right: clamp(20px, 4vw, 56px);
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 44px;
+  gap: 12px;
+  margin-bottom: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(13, 20, 18, 0.74);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .logo {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.28rem, 2.55vw, 1.87rem);
+  flex: 0 0 auto;
 }
 
 .menu {
   display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  min-width: 0;
   gap: 16px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.menu::-webkit-scrollbar {
+  display: none;
 }
 
 .menu a {
   color: var(--muted);
   border: 1px solid var(--line);
-  padding: 7px 12px;
+  padding: 6px 10px;
   border-radius: 999px;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
@@ -110,6 +132,11 @@ a {
 
 .hero-text {
   max-width: 760px;
+}
+
+.hero-name {
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 0.95;
 }
 
 .profile-card {
@@ -209,6 +236,8 @@ main {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: clamp(16px, 3vw, 28px);
+  content-visibility: auto;
+  contain-intrinsic-size: 760px;
 }
 
 .section-heading {
@@ -372,7 +401,7 @@ h2 {
 .track {
   display: flex;
   gap: var(--gap);
-  transition: transform 0.45s ease;
+  transition: transform 0.28s ease;
   will-change: transform;
 }
 
@@ -389,6 +418,111 @@ h2 {
   aspect-ratio: 4 / 3;
   display: block;
   object-fit: cover;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.card img[data-loaded="false"] {
+  filter: blur(8px);
+  transform: scale(1.015);
+}
+
+.card img[data-loaded="true"] {
+  filter: blur(0);
+  transform: none;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.lightbox-trigger {
+  cursor: zoom-in;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 26px);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 8, 9, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-dialog {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 100%);
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: clamp(8px, 2vw, 16px);
+}
+
+.lightbox-figure {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.lightbox-image {
+  width: 100%;
+  max-height: min(82vh, 900px);
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.lightbox-caption {
+  margin: 0;
+  padding: 10px 12px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.lightbox-nav,
+.lightbox-close {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.58);
+  color: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.lightbox-nav {
+  width: 48px;
+  height: 48px;
+  font-size: 1.4rem;
+}
+
+.lightbox-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  line-height: 1;
+  z-index: 3;
 }
 
 .caption {
@@ -510,8 +644,30 @@ footer {
 }
 
 @media (max-width: 760px) {
+  .hero {
+    padding-top: 128px;
+  }
+
+  .topbar {
+    top: 7px;
+    left: 12px;
+    right: 12px;
+    border-radius: 16px;
+    padding: 8px;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+
+  .topbar .logo {
+    width: 100%;
+    font-size: clamp(1.15rem, 6vw, 1.49rem);
+  }
+
   .menu {
+    width: 100%;
+    justify-content: flex-start;
     gap: 8px;
+    padding-bottom: 2px;
   }
 
   .menu a {
@@ -522,5 +678,37 @@ footer {
     width: 34px;
     height: 34px;
     font-size: 1.1rem;
+  }
+
+  .lightbox-dialog {
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    gap: 8px;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .lightbox-close {
+    top: -8px;
+    right: -2px;
+  }
+
+  .lightbox-image {
+    max-height: 72vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

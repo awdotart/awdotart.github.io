@@ -2,10 +2,14 @@ function setupCarousel(carousel) {
   const windowEl = carousel.querySelector('.carousel-window');
   const track = carousel.querySelector('.track');
   const cards = Array.from(carousel.querySelectorAll('.card'));
+  const cardImages = cards
+    .map((card) => card.querySelector('img'))
+    .filter(Boolean);
   const nextButton = carousel.querySelector('.next');
   const prevButton = carousel.querySelector('.prev');
   const dotsContainer = carousel.querySelector('.dots');
   const autoplayMs = Number(carousel.dataset.autoplay || 0);
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!windowEl || !track || cards.length === 0 || !nextButton || !prevButton || !dotsContainer) {
     return;
@@ -17,6 +21,42 @@ function setupCarousel(carousel) {
   let timer = null;
   let dots = [];
   let resizeTimer = null;
+  let isInViewport = true;
+  const visibilityBuffer = 1;
+
+  function markImageAsLoaded(img) {
+    img.dataset.loaded = 'true';
+  }
+
+  function prepareImage(img) {
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.fetchPriority = 'low';
+    img.dataset.loaded = img.dataset.loaded || 'false';
+
+    img.addEventListener('load', () => {
+      if (img.dataset.src) {
+        return;
+      }
+
+      markImageAsLoaded(img);
+    });
+
+    if (!img.dataset.src && img.complete && img.naturalWidth > 0) {
+      markImageAsLoaded(img);
+    }
+  }
+
+  function loadImageAt(index) {
+    const image = cardImages[index];
+
+    if (!image || !image.dataset.src) {
+      return;
+    }
+
+    image.src = image.dataset.src;
+    image.removeAttribute('data-src');
+  }
 
   function getVisibleCards() {
     return window.matchMedia('(min-width: 960px)').matches ? 3 : 2;
@@ -39,8 +79,19 @@ function setupCarousel(carousel) {
 
   function show(index) {
     currentIndex = clampOrWrap(index);
+    loadVisibleImages(currentIndex);
     track.style.transform = `translateX(-${stepSize * currentIndex}px)`;
     updateDots();
+  }
+
+  function loadVisibleImages(index) {
+    const visibleCards = getVisibleCards();
+    const start = Math.max(0, index - visibilityBuffer);
+    const end = Math.min(cards.length - 1, index + visibleCards - 1 + visibilityBuffer);
+
+    for (let i = start; i <= end; i += 1) {
+      loadImageAt(i);
+    }
   }
 
   function renderDots() {
@@ -51,7 +102,7 @@ function setupCarousel(carousel) {
       const dot = document.createElement('button');
       dot.className = 'dot';
       dot.type = 'button';
-      dot.setAttribute('aria-label', `Ver bloque ${i + 1}`);
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
       dot.addEventListener('click', () => {
         show(i);
         restartAutoplay();
@@ -77,7 +128,7 @@ function setupCarousel(carousel) {
   }
 
   function startAutoplay() {
-    if (autoplayMs <= 0 || maxIndex === 0) {
+    if (autoplayMs <= 0 || maxIndex === 0 || !isInViewport || document.hidden || reducedMotion) {
       return;
     }
 
@@ -121,6 +172,15 @@ function setupCarousel(carousel) {
     restartAutoplay();
   }
 
+  function handleVisibilityChange() {
+    if (document.hidden) {
+      stopAutoplay();
+      return;
+    }
+
+    startAutoplay();
+  }
+
   nextButton.addEventListener('click', () => {
     next();
     restartAutoplay();
@@ -139,8 +199,224 @@ function setupCarousel(carousel) {
     resizeTimer = setTimeout(refresh, 130);
   });
 
+  cardImages.forEach(prepareImage);
+
+  if ('IntersectionObserver' in window) {
+    const viewportObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isInViewport = Boolean(entry?.isIntersecting);
+
+        if (isInViewport) {
+          loadVisibleImages(currentIndex);
+          startAutoplay();
+        } else {
+          stopAutoplay();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    viewportObserver.observe(carousel);
+  }
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+
   window.addEventListener('load', refresh);
   refresh();
 }
 
 document.querySelectorAll('.carousel').forEach(setupCarousel);
+
+function setupLightbox() {
+  const carouselImages = Array.from(document.querySelectorAll('.carousel .card img'));
+
+  if (carouselImages.length === 0) {
+    return;
+  }
+
+  const groups = new Map();
+
+  carouselImages.forEach((img) => {
+    const carousel = img.closest('.carousel');
+
+    if (!carousel) {
+      return;
+    }
+
+    if (!groups.has(carousel)) {
+      groups.set(carousel, []);
+    }
+
+    groups.get(carousel).push(img);
+  });
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox';
+  overlay.setAttribute('hidden', '');
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.innerHTML = `
+    <div class="lightbox-backdrop" data-close="true"></div>
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">&#10094;</button>
+      <figure class="lightbox-figure">
+        <img class="lightbox-image" alt="" />
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">&#10095;</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const dialog = overlay.querySelector('.lightbox-dialog');
+  const lightboxImage = overlay.querySelector('.lightbox-image');
+  const caption = overlay.querySelector('.lightbox-caption');
+  const closeButton = overlay.querySelector('.lightbox-close');
+  const prevButton = overlay.querySelector('.lightbox-prev');
+  const nextButton = overlay.querySelector('.lightbox-next');
+  const backdrop = overlay.querySelector('.lightbox-backdrop');
+
+  if (!dialog || !lightboxImage || !caption || !closeButton || !prevButton || !nextButton || !backdrop) {
+    return;
+  }
+
+  let activeGroup = [];
+  let activeIndex = 0;
+  let opener = null;
+  let isOpen = false;
+
+  function getImageSrc(img) {
+    return img.dataset.src || img.currentSrc || img.src;
+  }
+
+  function getImageCaption(img) {
+    const card = img.closest('.card');
+    const text = card?.querySelector('.caption')?.textContent?.trim();
+    return text || '';
+  }
+
+  function updateNavigationState() {
+    const singleImage = activeGroup.length < 2;
+    prevButton.disabled = singleImage;
+    nextButton.disabled = singleImage;
+  }
+
+  function renderActiveImage() {
+    if (activeGroup.length === 0) {
+      return;
+    }
+
+    const img = activeGroup[activeIndex];
+    const src = getImageSrc(img);
+    const text = getImageCaption(img);
+    lightboxImage.src = src;
+    lightboxImage.alt = img.alt || '';
+    caption.textContent = text;
+    caption.hidden = !text;
+    updateNavigationState();
+  }
+
+  function openLightbox(group, index, trigger) {
+    activeGroup = group;
+    activeIndex = index;
+    opener = trigger;
+    isOpen = true;
+
+    renderActiveImage();
+    overlay.removeAttribute('hidden');
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    if (!isOpen) {
+      return;
+    }
+
+    isOpen = false;
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('hidden', '');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+    lightboxImage.removeAttribute('src');
+
+    if (opener) {
+      opener.focus();
+    }
+  }
+
+  function showNext() {
+    if (activeGroup.length < 2) {
+      return;
+    }
+
+    activeIndex = (activeIndex + 1) % activeGroup.length;
+    renderActiveImage();
+  }
+
+  function showPrev() {
+    if (activeGroup.length < 2) {
+      return;
+    }
+
+    activeIndex = (activeIndex - 1 + activeGroup.length) % activeGroup.length;
+    renderActiveImage();
+  }
+
+  groups.forEach((group) => {
+    group.forEach((img, index) => {
+      img.classList.add('lightbox-trigger');
+      img.setAttribute('role', 'button');
+      img.tabIndex = 0;
+      img.setAttribute('aria-label', `Open image ${index + 1} in viewer`);
+
+      img.addEventListener('click', () => {
+        openLightbox(group, index, img);
+      });
+
+      img.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLightbox(group, index, img);
+        }
+      });
+    });
+  });
+
+  closeButton.addEventListener('click', closeLightbox);
+  nextButton.addEventListener('click', showNext);
+  prevButton.addEventListener('click', showPrev);
+  backdrop.addEventListener('click', closeLightbox);
+
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!isOpen) {
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      closeLightbox();
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      showNext();
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      showPrev();
+    }
+  });
+}
+
+setupLightbox();
