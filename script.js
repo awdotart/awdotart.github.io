@@ -1,4 +1,5 @@
 function setupCarousel(carousel) {
+  const windowEl = carousel.querySelector('.carousel-window');
   const track = carousel.querySelector('.track');
   const cards = Array.from(carousel.querySelectorAll('.card'));
   const nextButton = carousel.querySelector('.next');
@@ -6,25 +7,28 @@ function setupCarousel(carousel) {
   const dotsContainer = carousel.querySelector('.dots');
   const autoplayMs = Number(carousel.dataset.autoplay || 0);
 
-  if (!track || cards.length === 0 || !nextButton || !prevButton || !dotsContainer) {
+  if (!windowEl || !track || cards.length === 0 || !nextButton || !prevButton || !dotsContainer) {
     return;
   }
 
   let currentIndex = 0;
   let maxIndex = 0;
+  let stepSize = 0;
   let timer = null;
   let dots = [];
   let resizeTimer = null;
 
   function getVisibleCards() {
-    const value = Number.parseInt(getComputedStyle(carousel).getPropertyValue('--visible-cards'), 10);
-    return Number.isFinite(value) && value > 0 ? value : 1;
+    return window.matchMedia('(min-width: 960px)').matches ? 3 : 2;
   }
 
-  function getStepSize() {
-    const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
-    const cardWidth = cards[0].getBoundingClientRect().width;
-    return cardWidth + gap;
+  function clampOrWrap(index) {
+    if (maxIndex === 0) {
+      return 0;
+    }
+
+    const totalSteps = maxIndex + 1;
+    return ((index % totalSteps) + totalSteps) % totalSteps;
   }
 
   function updateDots() {
@@ -34,8 +38,7 @@ function setupCarousel(carousel) {
   }
 
   function show(index) {
-    currentIndex = Math.max(0, Math.min(maxIndex, index));
-    const stepSize = getStepSize();
+    currentIndex = clampOrWrap(index);
     track.style.transform = `translateX(-${stepSize * currentIndex}px)`;
     updateDots();
   }
@@ -59,11 +62,11 @@ function setupCarousel(carousel) {
   }
 
   function next() {
-    show(currentIndex >= maxIndex ? 0 : currentIndex + 1);
+    show(currentIndex + 1);
   }
 
   function prev() {
-    show(currentIndex <= 0 ? maxIndex : currentIndex - 1);
+    show(currentIndex - 1);
   }
 
   function stopAutoplay() {
@@ -87,14 +90,32 @@ function setupCarousel(carousel) {
     startAutoplay();
   }
 
-  function refresh() {
+  function measure() {
     const visibleCards = getVisibleCards();
+    const gap = Number.parseFloat(getComputedStyle(track).gap || '0') || 0;
+    const viewportWidth = windowEl.clientWidth;
+
+    if (viewportWidth <= 0) {
+      return;
+    }
+
+    const cardWidth = (viewportWidth - gap * (visibleCards - 1)) / visibleCards;
+
+    cards.forEach((card) => {
+      card.style.flex = `0 0 ${cardWidth}px`;
+    });
+
+    stepSize = cardWidth + gap;
+    track.style.width = `${cards.length * cardWidth + gap * (cards.length - 1)}px`;
     maxIndex = Math.max(0, cards.length - visibleCards);
 
     if (currentIndex > maxIndex) {
-      currentIndex = maxIndex;
+      currentIndex = 0;
     }
+  }
 
+  function refresh() {
+    measure();
     renderDots();
     show(currentIndex);
     restartAutoplay();
@@ -110,11 +131,6 @@ function setupCarousel(carousel) {
     restartAutoplay();
   });
 
-  carousel.addEventListener('mouseenter', stopAutoplay);
-  carousel.addEventListener('mouseleave', startAutoplay);
-  carousel.addEventListener('focusin', stopAutoplay);
-  carousel.addEventListener('focusout', startAutoplay);
-
   window.addEventListener('resize', () => {
     if (resizeTimer) {
       clearTimeout(resizeTimer);
@@ -123,6 +139,7 @@ function setupCarousel(carousel) {
     resizeTimer = setTimeout(refresh, 130);
   });
 
+  window.addEventListener('load', refresh);
   refresh();
 }
 
