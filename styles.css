@@ -241,6 +241,35 @@ main {
   color: var(--muted);
 }
 
+.media-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.media-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.media-card h3 {
+  margin-top: 10px;
+}
+
+.media-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.media-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #000;
+}
+
 .mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -443,7 +472,11 @@ footer {
   }
 
   .hub-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .split-note {
@@ -453,6 +486,16 @@ footer {
 
   .kpi-grid,
   .papers-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .hub-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .media-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
