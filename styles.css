@@ -143,6 +143,10 @@ a {
   font-size: 0.94rem;
 }
 
+.profile-list.compact {
+  margin-top: 0;
+}
+
 .eyebrow {
   color: var(--accent-2);
   text-transform: uppercase;
@@ -216,6 +220,27 @@ main {
   margin: 6px 0 18px;
 }
 
+.hub-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.hub-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.hub-card h3 {
+  margin-top: 4px;
+}
+
+.hub-card p {
+  margin: 8px 0;
+  color: var(--muted);
+}
+
 .mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -275,6 +300,11 @@ main {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.split-note {
+  display: grid;
+  gap: 8px;
 }
 
 h2 {
@@ -409,6 +439,15 @@ footer {
 @media (min-width: 860px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+
+  .hub-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .split-note {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
   }
 
