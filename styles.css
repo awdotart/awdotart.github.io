@@ -134,6 +134,15 @@ a {
   font-size: 0.95rem;
 }
 
+.profile-list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 6px;
+  font-size: 0.94rem;
+}
+
 .eyebrow {
   color: var(--accent-2);
   text-transform: uppercase;
@@ -260,6 +269,12 @@ main {
   letter-spacing: 0.04em;
   color: var(--accent-2) !important;
   text-transform: uppercase;
+}
+
+.paper-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 h2 {
