@@ -296,6 +296,8 @@ footer {
   .carousel {
     --visible-cards: 3;
     --gap: 14px;
+    max-width: 1120px;
+    margin-inline: auto;
   }
 }
 
