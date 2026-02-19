@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Awart | Inicio</title>
+  <title>AW ART | Jorge Romero</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -15,134 +15,183 @@
 
   <header class="hero" id="inicio">
     <nav class="topbar">
-      <a class="logo" href="#inicio">Awart</a>
+      <a class="logo" href="index.html">AW ART</a>
       <div class="menu">
-        <a href="#galerias">Galerias</a>
-        <a href="#sobre">Sobre mi</a>
-        <a href="#contacto">Contacto</a>
+        <a class="active" href="index.html">Inicio</a>
+        <a href="#papers">Papers</a>
+        <a href="#dibujos">Dibujos</a>
+        <a href="arte.html">Solo arte</a>
       </div>
     </nav>
 
-    <div class="hero-content reveal">
-      <p class="eyebrow">Portfolio personal</p>
-      <h1>Una web principal con carruseles de 6 imagenes</h1>
-      <p class="lead">
-        Carruseles automaticos que muestran 2 o 3 tarjetas visibles segun el tamano de pantalla.
-      </p>
-      <a class="btn" href="#galerias">Ver carruseles</a>
+    <div class="hero-grid reveal">
+      <div class="hero-content hero-text">
+        <p class="eyebrow">Web personal</p>
+        <h1>Jorge Romero<br />Fisico y artista visual</h1>
+        <p class="lead">
+          Soy fisico y trabajo en investigacion. Esta web une mis dos areas:
+          mis papers cientificos y mis colecciones de arte.
+        </p>
+        <div class="button-row">
+          <a class="btn" href="#papers">Ver papers</a>
+          <a class="btn btn-ghost" href="arte.html">Ver solo arte</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <img class="profile-photo" src="IMG_20220703_143215.jpg" alt="Foto de Jorge Romero" loading="lazy" />
+        <h3>Fisico</h3>
+        <p>
+          Investigacion, docencia y divulgacion cientifica.
+          Puedes reemplazar esta foto por tu retrato principal.
+        </p>
+      </aside>
     </div>
   </header>
 
   <main>
-    <section class="section reveal" id="galerias">
+    <section class="section reveal" id="sobre">
       <div class="section-heading">
-        <p class="eyebrow">Seccion 01</p>
-        <h2>Galeria urbana</h2>
+        <p class="eyebrow">Perfil</p>
+        <h2>Sobre mi trabajo</h2>
       </div>
-
-      <div class="carousel" data-autoplay="3200">
-        <div class="carousel-window">
-          <div class="track">
-            <article class="card">
-              <img src="1.jpeg" alt="Galeria urbana 1" loading="lazy" />
-              <p class="caption">Noche y arquitectura.</p>
-            </article>
-            <article class="card">
-              <img src="1-1.jpeg" alt="Galeria urbana 2" loading="lazy" />
-              <p class="caption">Ritmo visual en calles.</p>
-            </article>
-            <article class="card">
-              <img src="1-2.jpeg" alt="Galeria urbana 3" loading="lazy" />
-              <p class="caption">Luces intensas y sombras.</p>
-            </article>
-            <article class="card">
-              <img src="1-3.jpeg" alt="Galeria urbana 4" loading="lazy" />
-              <p class="caption">Color y textura de ciudad.</p>
-            </article>
-            <article class="card">
-              <img src="2.jpeg" alt="Galeria urbana 5" loading="lazy" />
-              <p class="caption">Geometria y detalle.</p>
-            </article>
-            <article class="card">
-              <img src="2-1.jpeg" alt="Galeria urbana 6" loading="lazy" />
-              <p class="caption">Perspectivas modernas.</p>
-            </article>
-          </div>
-        </div>
-        <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
-        <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
-        <div class="dots" aria-hidden="true"></div>
+      <div class="kpi-grid">
+        <article class="kpi">
+          <h3>Area</h3>
+          <p>Fisica teorica y aplicaciones computacionales.</p>
+        </article>
+        <article class="kpi">
+          <h3>Enfoque</h3>
+          <p>Modelado, analisis cuantitativo y comunicacion cientifica.</p>
+        </article>
+        <article class="kpi">
+          <h3>Arte</h3>
+          <p>Dibujo tradicional, tinta, tatuajes y fotografia.</p>
+        </article>
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" id="papers">
       <div class="section-heading">
-        <p class="eyebrow">Seccion 02</p>
-        <h2>Galeria naturaleza</h2>
+        <p class="eyebrow">Investigacion</p>
+        <h2>Papers destacados</h2>
       </div>
-
-      <div class="carousel" data-autoplay="3600">
-        <div class="carousel-window">
-          <div class="track">
-            <article class="card">
-              <img src="2-2.jpeg" alt="Galeria naturaleza 1" loading="lazy" />
-              <p class="caption">Paleta organica y calma.</p>
-            </article>
-            <article class="card">
-              <img src="2-3.jpeg" alt="Galeria naturaleza 2" loading="lazy" />
-              <p class="caption">Escena abierta y limpia.</p>
-            </article>
-            <article class="card">
-              <img src="3.jpeg" alt="Galeria naturaleza 3" loading="lazy" />
-              <p class="caption">Composicion con profundidad.</p>
-            </article>
-            <article class="card">
-              <img src="3-1.jpeg" alt="Galeria naturaleza 4" loading="lazy" />
-              <p class="caption">Color suave y equilibrio.</p>
-            </article>
-            <article class="card">
-              <img src="4.jpeg" alt="Galeria naturaleza 5" loading="lazy" />
-              <p class="caption">Detalle natural para portada.</p>
-            </article>
-            <article class="card">
-              <img src="7.jpg" alt="Galeria naturaleza 6" loading="lazy" />
-              <p class="caption">Bloques listos para reemplazar.</p>
-            </article>
-          </div>
-        </div>
-        <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
-        <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
-        <div class="dots" aria-hidden="true"></div>
+      <div class="papers-grid">
+        <article class="paper-card">
+          <p class="paper-meta">2026 · Journal paper</p>
+          <h3>Titulo de paper 01</h3>
+          <p>Resumen breve del aporte cientifico y la metodologia principal.</p>
+          <a class="text-link" href="#">Leer paper</a>
+        </article>
+        <article class="paper-card">
+          <p class="paper-meta">2025 · Conference paper</p>
+          <h3>Titulo de paper 02</h3>
+          <p>Resultados relevantes, validacion experimental e impacto.</p>
+          <a class="text-link" href="#">Leer paper</a>
+        </article>
+        <article class="paper-card">
+          <p class="paper-meta">2024 · Preprint</p>
+          <h3>Titulo de paper 03</h3>
+          <p>Linea de investigacion actual y proximo trabajo en curso.</p>
+          <a class="text-link" href="#">Leer paper</a>
+        </article>
       </div>
-    </section>
-
-    <section class="section about reveal" id="sobre">
-      <div class="section-heading">
-        <p class="eyebrow">Seccion 03</p>
-        <h2>Sobre mi</h2>
-      </div>
-      <p>
-        Usa este bloque para presentarte: quien eres, que haces y que tipo de proyectos quieres mostrar.
+      <p class="section-note">
+        Puedes cambiar estos enlaces por tus URLs reales de arXiv, DOI o Google Scholar.
       </p>
-      <div class="tags">
-        <span>Diseno visual</span>
-        <span>Fotografia</span>
-        <span>Web personal</span>
+    </section>
+
+    <section class="section reveal" id="dibujos">
+      <div class="section-heading">
+        <p class="eyebrow">Arte</p>
+        <h2>Dibujos y colecciones</h2>
+      </div>
+      <p class="section-note">
+        Esta es una vista previa de tus galerias. Para compartir solo tu arte usa:
+        <a class="text-link" href="arte.html">arte.html</a>
+      </p>
+
+      <div class="gallery-list">
+        <article class="gallery-block">
+          <div class="section-heading">
+            <p class="eyebrow">Preview 01</p>
+            <h2>Acrylic</h2>
+          </div>
+          <div class="carousel" data-autoplay="3200">
+            <div class="carousel-window">
+              <div class="track">
+                <article class="card"><img src="1-1.jpeg" alt="Acrylic 1" loading="lazy" /><p class="caption">Acrylic 01</p></article>
+                <article class="card"><img src="1-2.jpeg" alt="Acrylic 2" loading="lazy" /><p class="caption">Acrylic 02</p></article>
+                <article class="card"><img src="1-3.jpeg" alt="Acrylic 3" loading="lazy" /><p class="caption">Acrylic 03</p></article>
+                <article class="card"><img src="1.jpeg" alt="Acrylic 4" loading="lazy" /><p class="caption">Acrylic 04</p></article>
+                <article class="card"><img src="13.jpg" alt="Acrylic 5" loading="lazy" /><p class="caption">Acrylic 05</p></article>
+                <article class="card"><img src="2-1.jpeg" alt="Acrylic 6" loading="lazy" /><p class="caption">Acrylic 06</p></article>
+              </div>
+            </div>
+            <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
+            <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
+            <div class="dots" aria-hidden="true"></div>
+          </div>
+        </article>
+
+        <article class="gallery-block">
+          <div class="section-heading">
+            <p class="eyebrow">Preview 02</p>
+            <h2>Anime</h2>
+          </div>
+          <div class="carousel" data-autoplay="3600">
+            <div class="carousel-window">
+              <div class="track">
+                <article class="card"><img src="img_20200509_221746388.jpg" alt="Anime 1" loading="lazy" /><p class="caption">Anime 01</p></article>
+                <article class="card"><img src="img_20200516_0031543283.jpg" alt="Anime 2" loading="lazy" /><p class="caption">Anime 02</p></article>
+                <article class="card"><img src="img_20200517_1556102352.jpg" alt="Anime 3" loading="lazy" /><p class="caption">Anime 03</p></article>
+                <article class="card"><img src="img_20200517_1556147832.jpg" alt="Anime 4" loading="lazy" /><p class="caption">Anime 04</p></article>
+                <article class="card"><img src="img_20200517_1556191622.jpg" alt="Anime 5" loading="lazy" /><p class="caption">Anime 05</p></article>
+                <article class="card"><img src="img_20200612_2236103483.jpg" alt="Anime 6" loading="lazy" /><p class="caption">Anime 06</p></article>
+              </div>
+            </div>
+            <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
+            <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
+            <div class="dots" aria-hidden="true"></div>
+          </div>
+        </article>
+
+        <article class="gallery-block">
+          <div class="section-heading">
+            <p class="eyebrow">Preview 03</p>
+            <h2>Chiaroscuro</h2>
+          </div>
+          <div class="carousel" data-autoplay="4000">
+            <div class="carousel-window">
+              <div class="track">
+                <article class="card"><img src="proyecto-20240510021134.jpg" alt="Chiaroscuro 1" loading="lazy" /><p class="caption">Chiaroscuro 01</p></article>
+                <article class="card"><img src="whatsapp-image-2026-01-23-at-5.17.53-pm-1.jpeg" alt="Chiaroscuro 2" loading="lazy" /><p class="caption">Chiaroscuro 02</p></article>
+                <article class="card"><img src="whatsapp-image-2026-01-23-at-5.17.53-pm.jpeg" alt="Chiaroscuro 3" loading="lazy" /><p class="caption">Chiaroscuro 03</p></article>
+                <article class="card"><img src="whatsapp-image-2026-01-23-at-5.24.16-pm.jpeg" alt="Chiaroscuro 4" loading="lazy" /><p class="caption">Chiaroscuro 04</p></article>
+                <article class="card"><img src="whatsapp-image-2026-01-24-at-19.34.26.jpeg" alt="Chiaroscuro 5" loading="lazy" /><p class="caption">Chiaroscuro 05</p></article>
+                <article class="card"><img src="whatsapp-image-2026-01-24-at-19.44.49.jpeg" alt="Chiaroscuro 6" loading="lazy" /><p class="caption">Chiaroscuro 06</p></article>
+              </div>
+            </div>
+            <button class="control prev" type="button" aria-label="Bloque anterior">&#10094;</button>
+            <button class="control next" type="button" aria-label="Siguiente bloque">&#10095;</button>
+            <div class="dots" aria-hidden="true"></div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section contact reveal" id="contacto">
       <div class="section-heading">
-        <p class="eyebrow">Seccion 04</p>
-        <h2>Contacto</h2>
+        <p class="eyebrow">Contacto</p>
+        <h2>Colaboraciones y consultas</h2>
       </div>
-      <p>Agrega tu correo o enlaces de redes para que te contacten.</p>
+      <p>Agrega tu correo institucional y redes profesionales para contacto.</p>
       <a class="btn btn-secondary" href="mailto:tu-correo@dominio.com">Escribeme</a>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Awart. Hecho para GitHub Pages.</p>
+    <p>© 2026 AW ART · Pagina personal de Jorge Romero</p>
   </footer>
 </body>
 </html>
