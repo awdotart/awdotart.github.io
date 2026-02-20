@@ -224,6 +224,30 @@ h1 {
   border: 1px solid var(--line);
 }
 
+.xima-actions .btn {
+  border: 1px solid transparent;
+}
+
+.xima-actions .xima-btn-official {
+  background: linear-gradient(125deg, #22d3ee, #0ea5e9);
+  color: #06253a;
+}
+
+.xima-actions .xima-btn-play {
+  background: linear-gradient(125deg, #84cc16, #22c55e);
+  color: #132b09;
+}
+
+.xima-actions .xima-btn-videos {
+  background: linear-gradient(125deg, #fb7185, #f97316);
+  color: #3a0f0f;
+}
+
+.xima-actions .xima-btn-book {
+  background: linear-gradient(125deg, #facc15, #f59e0b);
+  color: #352307;
+}
+
 main {
   padding: 0 clamp(20px, 4vw, 56px) 70px;
   display: grid;
@@ -299,6 +323,17 @@ main {
   background: #000;
 }
 
+.media-cover {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.section-media-contain .media-video {
+  object-fit: contain;
+  background: rgba(5, 6, 7, 0.92);
+}
+
 .mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -365,6 +400,35 @@ main {
   gap: 8px;
 }
 
+.xima-book {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 12px;
+}
+
+.xima-book-cover {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  display: block;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(5, 6, 7, 0.92);
+  padding: 10px;
+  justify-self: center;
+}
+
+.xima-media-carousel {
+  margin: 8px 0 14px;
+}
+
+.xima-media-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 h2 {
   font-size: clamp(1.8rem, 5vw, 3rem);
 }
@@ -381,6 +445,14 @@ h2 {
 
 .gallery-block .section-heading h2 {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+.gallery-digital .card img,
+.gallery-anime .card img,
+.gallery-chiaroscuro .card img,
+.gallery-light .card img {
+  object-fit: contain;
+  background: rgba(5, 6, 7, 0.92);
 }
 
 .carousel {
@@ -419,6 +491,11 @@ h2 {
   display: block;
   object-fit: cover;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.carousel-contain .card img {
+  object-fit: contain;
+  background: rgba(5, 6, 7, 0.92);
 }
 
 .card img[data-loaded="false"] {
@@ -618,6 +695,20 @@ footer {
     align-items: start;
   }
 
+  .xima-book {
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .xima-book-cover {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .xima-book .hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .kpi-grid,
   .papers-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -627,6 +718,10 @@ footer {
 @media (min-width: 1200px) {
   .hub-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xima-book .hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .media-grid {
