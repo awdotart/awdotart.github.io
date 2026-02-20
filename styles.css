@@ -29,6 +29,7 @@ body {
     linear-gradient(180deg, #0d1412 0%, #0a1110 100%);
   min-height: 100vh;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 .noise {
@@ -265,8 +266,6 @@ main {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: clamp(16px, 3vw, 28px);
-  content-visibility: auto;
-  contain-intrinsic-size: 760px;
 }
 
 .section-heading {
@@ -471,8 +470,20 @@ h2 {
 }
 
 .carousel-window {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 0 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-window::-webkit-scrollbar {
+  display: none;
+}
+
+.js-ready .carousel-window {
+  overflow: hidden;
 }
 
 .track {
@@ -480,14 +491,22 @@ h2 {
   gap: var(--gap);
   transition: transform 0.28s ease;
   will-change: transform;
+  width: max-content;
+}
+
+.js-ready .track {
+  width: auto;
 }
 
 .card {
+  flex: 0 0 50%;
   flex: 0 0 calc((100% - (var(--visible-cards) - 1) * var(--gap)) / var(--visible-cards));
+  min-width: 0;
   border-radius: 12px;
   border: 1px solid var(--line);
   overflow: hidden;
   background: rgba(0, 0, 0, 0.28);
+  scroll-snap-align: start;
 }
 
 .card img {
@@ -735,6 +754,10 @@ footer {
 }
 
 @media (min-width: 960px) {
+  .card {
+    flex-basis: 33.3333%;
+  }
+
   .carousel {
     --visible-cards: 3;
     --gap: 14px;
@@ -772,6 +795,18 @@ footer {
 
   .menu a {
     font-size: 0.88rem;
+  }
+
+  .carousel {
+    --gap: 10px;
+  }
+
+  .carousel-window {
+    padding: 0 12px;
+  }
+
+  .card img {
+    max-height: 220px;
   }
 
   .control {

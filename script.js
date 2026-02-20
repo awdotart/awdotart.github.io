@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js-ready');
+
 function setupCarousel(carousel) {
   const windowEl = carousel.querySelector('.carousel-window');
   const track = carousel.querySelector('.track');
@@ -9,7 +11,7 @@ function setupCarousel(carousel) {
   const prevButton = carousel.querySelector('.prev');
   const dotsContainer = carousel.querySelector('.dots');
   const autoplayMs = Number(carousel.dataset.autoplay || 0);
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!windowEl || !track || cards.length === 0 || !nextButton || !prevButton || !dotsContainer) {
     return;
@@ -22,16 +24,22 @@ function setupCarousel(carousel) {
   let dots = [];
   let resizeTimer = null;
   let isInViewport = true;
-  const visibilityBuffer = 1;
+  const visibilityBuffer = 2;
 
   function markImageAsLoaded(img) {
     img.dataset.loaded = 'true';
   }
 
-  function prepareImage(img) {
-    img.loading = 'lazy';
+  function prepareImage(img, index) {
+    if (index < 4) {
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+    } else {
+      img.loading = 'lazy';
+      img.fetchPriority = 'low';
+    }
+
     img.decoding = 'async';
-    img.fetchPriority = 'low';
     img.dataset.loaded = img.dataset.loaded || 'false';
 
     img.addEventListener('load', () => {
@@ -44,6 +52,11 @@ function setupCarousel(carousel) {
 
     if (!img.dataset.src && img.complete && img.naturalWidth > 0) {
       markImageAsLoaded(img);
+    }
+
+    if (index < 4 && img.dataset.src) {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
     }
   }
 
@@ -59,7 +72,11 @@ function setupCarousel(carousel) {
   }
 
   function getVisibleCards() {
-    return window.matchMedia('(min-width: 960px)').matches ? 3 : 2;
+    const wideScreen = typeof window.matchMedia === 'function'
+      ? window.matchMedia('(min-width: 960px)').matches
+      : window.innerWidth >= 960;
+
+    return wideScreen ? 3 : 2;
   }
 
   function clampOrWrap(index) {
@@ -144,7 +161,18 @@ function setupCarousel(carousel) {
   function measure() {
     const visibleCards = getVisibleCards();
     const gap = Number.parseFloat(getComputedStyle(track).gap || '0') || 0;
-    const viewportWidth = windowEl.clientWidth;
+    let viewportWidth = windowEl.clientWidth;
+
+    if (viewportWidth <= 0) {
+      const carouselWidth = carousel.clientWidth;
+      viewportWidth = Math.max(0, carouselWidth - 32);
+    }
+
+    const maxViewportWidth = window.innerWidth || viewportWidth;
+
+    if (maxViewportWidth > 0 && viewportWidth > maxViewportWidth) {
+      viewportWidth = maxViewportWidth;
+    }
 
     if (viewportWidth <= 0) {
       return;
@@ -199,17 +227,18 @@ function setupCarousel(carousel) {
     resizeTimer = setTimeout(refresh, 130);
   });
 
-  cardImages.forEach(prepareImage);
+  window.addEventListener('orientationchange', refresh);
+
+  cardImages.forEach((img, index) => prepareImage(img, index));
 
   if ('IntersectionObserver' in window) {
     const viewportObserver = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        isInViewport = Boolean(entry?.isIntersecting);
+        isInViewport = Boolean(entry && entry.isIntersecting);
 
         if (isInViewport) {
-          loadVisibleImages(currentIndex);
-          startAutoplay();
+          requestAnimationFrame(refresh);
         } else {
           stopAutoplay();
         }
@@ -293,7 +322,13 @@ function setupLightbox() {
 
   function getImageCaption(img) {
     const card = img.closest('.card');
-    const text = card?.querySelector('.caption')?.textContent?.trim();
+    let text = '';
+
+    if (card) {
+      const caption = card.querySelector('.caption');
+      text = caption ? caption.textContent.trim() : '';
+    }
+
     return text || '';
   }
 
