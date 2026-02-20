@@ -243,6 +243,11 @@ h1 {
   color: #3a0f0f;
 }
 
+.xima-actions .xima-btn-bookweb {
+  background: linear-gradient(125deg, #c084fc, #8b5cf6);
+  color: #210a3c;
+}
+
 .xima-actions .xima-btn-book {
   background: linear-gradient(125deg, #facc15, #f59e0b);
   color: #352307;
