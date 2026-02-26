@@ -201,6 +201,15 @@ h1 {
   gap: 10px;
 }
 
+.hero-random-quote {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+
 .btn {
   display: inline-block;
   background: linear-gradient(125deg, var(--accent), #f97316);
