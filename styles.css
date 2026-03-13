@@ -410,7 +410,7 @@ main {
 .posters-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .poster-card {
@@ -446,6 +446,7 @@ main {
 .talks-grid {
   display: grid;
   gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .talk-card {
@@ -466,37 +467,6 @@ main {
   object-fit: contain;
   background: rgba(5, 6, 7, 0.92);
 }
-
-.talk-preview {
-  min-height: clamp(220px, 28vw, 380px);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background-color: rgba(5, 6, 7, 0.92);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.talk-preview-1 {
-  background-image: url("talks/t1.png");
-}
-
-.talk-preview-2 {
-  background-image: url("talks/t2.png");
-}
-
-.talk-preview-3 {
-  background-image: url("talks/t3.png");
-}
-
-.talk-preview-4 {
-  background-image: url("talks/t4.png");
-}
-
-.talk-preview-5 {
-  background-image: url("talks/t5.png");
-}
-
 
 .talk-meta {
   margin: 0;
@@ -889,6 +859,10 @@ footer {
 }
 
 @media (max-width: 760px) {
+  .posters-grid,
+  .talks-grid {
+    grid-template-columns: 1fr;
+  }
   .hero {
     padding-top: 128px;
   }
@@ -969,6 +943,7 @@ footer {
     animation: none;
   }
 }
+
 
 
 
