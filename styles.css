@@ -234,6 +234,23 @@ h1 {
   border: 1px solid var(--line);
 }
 
+.publications-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-publications {
+  background: linear-gradient(135deg, #ff9a1f, #ff7a00);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 34px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(255, 122, 0, 0.35);
+}
+
 .xima-actions .btn {
   border: 1px solid transparent;
 }
