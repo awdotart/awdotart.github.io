@@ -512,6 +512,146 @@ function setupImageCompare(compare) {
 
 document.querySelectorAll(".image-compare").forEach(setupImageCompare);
 
+function setupVideoOverlayCompare(compare) {
+  const image = compare.querySelector(".video-overlay-image");
+  const range = compare.querySelector(".video-overlay-range");
+  const handle = compare.querySelector(".video-overlay-handle");
+  const minScale = 0.34;
+
+  if (!image || !range || !handle) {
+    return;
+  }
+
+  function clamp(value) {
+    return Math.min(100, Math.max(0, Number(value)));
+  }
+
+  function clampPx(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function percentFromClientX(clientX) {
+    const rect = compare.getBoundingClientRect();
+
+    if (rect.width <= 0) {
+      return clamp(range.value || 100);
+    }
+
+    const x = clampPx(clientX - rect.left, 0, rect.width);
+    const scaleRaw = 1 - x / rect.width;
+    const scale = Math.min(1, Math.max(minScale, scaleRaw));
+    const progress = (scale - minScale) / (1 - minScale);
+
+    return 100 - progress * 100;
+  }
+
+  function placeHandle(scale) {
+    const width = compare.clientWidth;
+    const height = compare.clientHeight;
+
+    if (width <= 0 || height <= 0) {
+      return;
+    }
+
+    const handleHalf = (handle.offsetWidth || 40) / 2;
+    const borderCornerX = width - width * scale;
+    const borderCornerY = 0;
+    const x = clampPx(borderCornerX + 1, handleHalf + 2, width - handleHalf - 2);
+    const y = clampPx(borderCornerY + 1, handleHalf + 2, height - handleHalf - 2);
+
+    handle.style.left = x + "px";
+    handle.style.top = y + "px";
+  }
+
+  function apply(value) {
+    const percent = clamp(value);
+    const progress = 1 - percent / 100;
+    const scale = minScale + (1 - minScale) * progress;
+    const radius = 10 * (1 - progress);
+    const borderWidth = 1 * (1 - progress);
+    const shadowAlpha = 0.45 * (1 - progress);
+
+    image.style.setProperty("--overlay-scale", String(scale));
+    image.style.borderRadius = radius.toFixed(2) + "px";
+    image.style.borderWidth = borderWidth.toFixed(2) + "px";
+    image.style.boxShadow =
+      shadowAlpha > 0.01
+        ? `0 10px 24px rgba(0, 0, 0, ${shadowAlpha.toFixed(3)})`
+        : "none";
+    placeHandle(scale);
+  }
+
+  function setFromPointer(clientX) {
+    const percent = percentFromClientX(clientX);
+    range.value = String(percent);
+    apply(percent);
+  }
+
+  const initial = Number.isFinite(Number(compare.dataset.overlayStart))
+    ? clamp(compare.dataset.overlayStart)
+    : clamp(range.value || 0);
+
+  range.value = String(initial);
+  apply(initial);
+
+  range.addEventListener("input", (event) => {
+    apply(event.target.value);
+  });
+
+  range.addEventListener("change", (event) => {
+    apply(event.target.value);
+  });
+
+  let activePointerId = null;
+
+  handle.addEventListener("pointerdown", (event) => {
+    activePointerId = event.pointerId;
+    handle.setPointerCapture(event.pointerId);
+    event.preventDefault();
+    setFromPointer(event.clientX);
+  });
+
+  handle.addEventListener("pointermove", (event) => {
+    if (activePointerId !== event.pointerId) {
+      return;
+    }
+
+    event.preventDefault();
+    setFromPointer(event.clientX);
+  });
+
+  function stopPointerDrag(event) {
+    if (activePointerId !== event.pointerId) {
+      return;
+    }
+
+    activePointerId = null;
+
+    try {
+      handle.releasePointerCapture(event.pointerId);
+    } catch (_) {
+      // Ignore if capture is already released.
+    }
+  }
+
+  handle.addEventListener("pointerup", stopPointerDrag);
+  handle.addEventListener("pointercancel", stopPointerDrag);
+
+  if ("ResizeObserver" in window) {
+    const resizeObserver = new ResizeObserver(() => {
+      apply(range.value);
+    });
+
+    resizeObserver.observe(compare);
+  } else {
+    window.addEventListener("resize", () => {
+      apply(range.value);
+    });
+  }
+}
+
+document.querySelectorAll(".video-overlay-compare").forEach(setupVideoOverlayCompare);
+
 function setupCardYears() {
   document.querySelectorAll(".card").forEach((card) => {
     if (card.querySelector(".card-year")) {
@@ -535,7 +675,7 @@ function setupCardYears() {
 setupCardYears();
 
 function setupAcrylicVideoAutoplay() {
-  const videos = Array.from(document.querySelectorAll('.acrylic-video-grid .acrylic-video'));
+  const videos = Array.from(document.querySelectorAll('.acrylic-video'));
 
   if (videos.length === 0) {
     return;
