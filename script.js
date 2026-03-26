@@ -455,3 +455,161 @@ function setupLightbox() {
 }
 
 setupLightbox();
+
+function setupImageCompare(compare) {
+  const range = compare.querySelector(".image-compare-range");
+  const beforeWrap = compare.querySelector(".image-compare-before-wrap");
+  const handle = compare.querySelector(".image-compare-handle");
+
+  if (!range || !beforeWrap || !handle) {
+    return;
+  }
+
+  function clamp(value) {
+    return Math.min(100, Math.max(0, Number(value)));
+  }
+
+  function syncOverlayWidth() {
+    const baseWidth = compare.clientWidth;
+
+    if (baseWidth > 0) {
+      beforeWrap.style.setProperty("--compare-image-width", baseWidth + "px");
+    }
+  }
+
+  function apply(value) {
+    const percent = clamp(value);
+    beforeWrap.style.width = percent + "%";
+    handle.style.left = percent + "%";
+  }
+
+  const initial = Number.isFinite(Number(compare.dataset.start))
+    ? clamp(compare.dataset.start)
+    : clamp(range.value || 50);
+
+  range.value = String(initial);
+  syncOverlayWidth();
+  apply(initial);
+
+  range.addEventListener("input", (event) => {
+    apply(event.target.value);
+  });
+
+  range.addEventListener("change", (event) => {
+    apply(event.target.value);
+  });
+
+  if ("ResizeObserver" in window) {
+    const resizeObserver = new ResizeObserver(() => {
+      syncOverlayWidth();
+    });
+
+    resizeObserver.observe(compare);
+  } else {
+    window.addEventListener("resize", syncOverlayWidth);
+  }
+}
+
+document.querySelectorAll(".image-compare").forEach(setupImageCompare);
+
+function setupCardYears() {
+  document.querySelectorAll(".card").forEach((card) => {
+    if (card.querySelector(".card-year")) {
+      return;
+    }
+
+    const year = (card.dataset.year || "").trim();
+
+    if (!year) {
+      return;
+    }
+
+    const badge = document.createElement("span");
+    badge.className = "card-year";
+    badge.textContent = year;
+    badge.setAttribute("aria-hidden", "true");
+    card.appendChild(badge);
+  });
+}
+
+setupCardYears();
+
+function setupAcrylicVideoAutoplay() {
+  const videos = Array.from(document.querySelectorAll('.acrylic-video-grid .acrylic-video'));
+
+  if (videos.length === 0) {
+    return;
+  }
+
+  function tryPlay(video) {
+    const playPromise = video.play();
+
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
+  }
+
+  function isMostlyVisible(video) {
+    const rect = video.getBoundingClientRect();
+    const viewportTop = 0;
+    const viewportBottom = window.innerHeight || document.documentElement.clientHeight;
+    const visible = Math.max(0, Math.min(rect.bottom, viewportBottom) - Math.max(rect.top, viewportTop));
+    const ratio = visible / Math.max(rect.height, 1);
+    return ratio >= 0.55;
+  }
+
+  videos.forEach((video) => {
+    video.muted = true;
+    video.playsInline = true;
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.55 && !document.hidden) {
+            tryPlay(video);
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: [0, 0.25, 0.55, 0.8]
+      }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+  } else {
+    const onScroll = () => {
+      videos.forEach((video) => {
+        if (!document.hidden && isMostlyVisible(video)) {
+          tryPlay(video);
+        } else {
+          video.pause();
+        }
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      videos.forEach((video) => video.pause());
+      return;
+    }
+
+    videos.forEach((video) => {
+      if (isMostlyVisible(video)) {
+        tryPlay(video);
+      }
+    });
+  });
+}
+
+setupAcrylicVideoAutoplay();
