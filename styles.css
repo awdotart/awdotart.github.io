@@ -1251,11 +1251,13 @@ footer {
     max-width: 100%;
     margin: 12px 0 0;
     gap: 10px;
-    justify-items: stretch;
+    justify-items: start;
   }
 
+  .acrylic-process-compare,
+  .acrylic-video-item,
   .acrylic-media-compare-test {
-    width: 100%;
+    width: min(100%, 400px);
     max-width: 100%;
     margin: 0;
   }
@@ -1272,7 +1274,7 @@ footer {
   .video-overlay-compare {
     width: 100%;
     max-width: 100%;
-    max-height: 52svh;
+    max-height: none;
   }
 
   .image-compare-after,
@@ -1280,13 +1282,12 @@ footer {
   .video-overlay-base {
     width: 100%;
     max-width: 100%;
-    max-height: 52svh;
-    object-fit: contain;
+    max-height: none;
   }
 
   .image-compare-before {
-    width: 100%;
-    max-width: 100%;
-    max-height: 52svh;
+    width: var(--compare-image-width, 100%);
+    max-width: none;
+    max-height: none;
   }
 }
