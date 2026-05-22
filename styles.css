@@ -1290,3 +1290,90 @@ footer {
     max-height: none;
   }
 }
+
+/* Local FIAS banner integration */
+.hero {
+  position: relative;
+  min-height: clamp(720px, 88vh, 920px);
+  isolation: isolate;
+}
+
+.hero-header-image {
+  position: absolute;
+  top: 86px;
+  left: clamp(20px, 4vw, 56px);
+  right: clamp(20px, 4vw, 56px);
+  z-index: -1;
+  max-width: 1280px;
+  height: clamp(245px, 30vw, 390px);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-soft);
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.28);
+}
+
+.hero-header-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(13, 20, 18, 0.02) 0%, rgba(13, 20, 18, 0.08) 48%, rgba(13, 20, 18, 0.52) 100%),
+    linear-gradient(90deg, rgba(13, 20, 18, 0.26) 0%, rgba(13, 20, 18, 0.06) 48%, rgba(13, 20, 18, 0.2) 100%);
+}
+
+.hero-header-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(1.18) saturate(1.08);
+}
+
+.hero .hero-grid {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(250px, 29vw, 350px);
+}
+
+.hero .profile-card {
+  margin-top: clamp(-135px, -9vw, -76px);
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@media (min-width: 860px) {
+  .hero .hero-grid {
+    align-items: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-header-image {
+    top: 128px;
+    left: 12px;
+    right: 12px;
+    height: 170px;
+  }
+
+  .hero-header-image::after {
+    background:
+      linear-gradient(180deg, rgba(13, 20, 18, 0.02) 0%, rgba(13, 20, 18, 0.06) 48%, rgba(13, 20, 18, 0.52) 100%),
+      linear-gradient(90deg, rgba(13, 20, 18, 0.18), rgba(13, 20, 18, 0.04));
+  }
+
+  .hero .hero-grid {
+    padding-top: 185px;
+  }
+
+  .hero .profile-card {
+    margin-top: 20px;
+  }
+}
