@@ -396,11 +396,28 @@ main {
   gap: 12px;
 }
 
+.papers-feature-grid {
+  display: grid;
+  gap: 16px;
+}
+
 .paper-card {
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.25);
+}
+
+.paper-feature-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 320px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 16px;
+}
+
+.paper-content {
+  min-width: 0;
 }
 
 .paper-card h3 {
@@ -410,6 +427,31 @@ main {
 .paper-card p {
   margin: 8px 0;
   color: var(--muted);
+}
+
+.paper-figure-link {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(5, 6, 7, 0.92);
+}
+
+.paper-figure {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+  object-fit: contain;
+  background: rgba(5, 6, 7, 0.92);
+}
+
+.paper-authors {
+  color: var(--muted);
+}
+
+.paper-summary {
+  color: var(--text) !important;
+  max-width: 78ch;
 }
 
 .paper-meta {
@@ -423,6 +465,27 @@ main {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.additional-publications {
+  margin-top: 22px;
+}
+
+.additional-publications h3 {
+  margin-bottom: 12px;
+}
+
+.compact-papers-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.paper-compact {
+  align-content: start;
+}
+
+.paper-compact h3 {
+  font-size: 1rem;
 }
 .posters-grid {
   display: flex;
@@ -889,6 +952,10 @@ footer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .compact-papers-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .posters-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -936,6 +1003,16 @@ footer {
 }
 
 @media (max-width: 760px) {
+  .paper-feature-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .paper-figure {
+    max-height: 260px;
+  }
+
   .talks-grid {
     grid-template-columns: 1fr;
   }
