@@ -487,6 +487,61 @@ main {
 .paper-compact h3 {
   font-size: 1rem;
 }
+
+.scroll-carousel {
+  position: relative;
+  padding: 0 46px;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(13, 20, 18, 0.82);
+  color: var(--text);
+  font-size: 1.18rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.scroll-arrow:hover {
+  border-color: var(--accent);
+  background: rgba(245, 158, 11, 0.18);
+  color: var(--accent);
+}
+
+.scroll-arrow:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.scroll-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.scroll-arrow-prev {
+  left: 0;
+}
+
+.scroll-arrow-next {
+  right: 0;
+}
+
+.posters-grid:focus-visible,
+.talks-grid:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 4px;
+}
+
 .posters-grid {
   display: flex;
   width: 100%;
@@ -1011,6 +1066,24 @@ footer {
 
   .paper-figure {
     max-height: 260px;
+  }
+
+  .scroll-carousel {
+    padding: 0;
+  }
+
+  .scroll-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .scroll-arrow-prev {
+    left: 4px;
+  }
+
+  .scroll-arrow-next {
+    right: 4px;
   }
 
   .talks-grid {

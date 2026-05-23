@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260313-3" />
-  <script src="script.js?v=20260220-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260523-1" />
+  <script src="script.js?v=20260523-1" defer></script>
 </head>
 <body>
   <div class="noise"></div>
@@ -207,8 +207,10 @@
       <p class="section-note">
         Slides and conference talks in PDF format.
       </p>
-      <div class="talks-grid">
-        <article class="talk-card">
+      <div class="scroll-carousel" data-scroll-carousel>
+        <button class="scroll-arrow scroll-arrow-prev" type="button" aria-label="Previous talks">&#10094;</button>
+        <div class="talks-grid" tabindex="0">
+          <article class="talk-card">
           <img class="talk-preview-image" src="talks/t1.png" alt="Talk 1 cover" loading="lazy" decoding="async" fetchpriority="low" />
           <h3>Combined constraints on dark photons from high-energy collisions, cosmology, and astrophysics </h3>
           <p class="talk-meta">DMLab Meeting: DarkMatter@Bonn, Germany, 2025.</p>
@@ -218,7 +220,7 @@
           </div>
         </article>
 
-        <article class="talk-card">
+          <article class="talk-card">
           <img class="talk-preview-image" src="talks/t2.png" alt="Talk 2 cover" loading="lazy" decoding="async" fetchpriority="low" />
           <h3>Constraining dark photon kinetic mixing in heavy-ion collisions from SIS to LHC energies</h3>
           <p class="talk-meta">Dark Matter 2025: From the Smallest to the Largest Scale, Santander, Spain, 2025.</p>
@@ -228,7 +230,7 @@
           </div>
         </article>
 
-        <article class="talk-card">
+          <article class="talk-card">
           <img class="talk-preview-image" src="talks/t3.png" alt="Talk 3 cover" loading="lazy" decoding="async" fetchpriority="low" />
           <h3>Search for dark photons in heavy-ion collisions</h3>
           <p class="talk-meta">International Conference on High Energy Physics (ICHEP), Prague, 2024.</p>
@@ -238,7 +240,7 @@
           </div>
         </article>
 
-        <article class="talk-card">
+          <article class="talk-card">
           <img class="talk-preview-image" src="talks/t4.png" alt="Talk 4 cover" loading="lazy" decoding="async" fetchpriority="low" />
           <h3>Exploring dark photon production and kinetic mixing constraints in heavy-ion collisions</h3>
           <p class="talk-meta">3rd Workshop on Heavy Ion Physics and Compact Stars (HIPSTARS), Havana, 2024.</p>
@@ -248,7 +250,7 @@
           </div>
         </article>
 
-        <article class="talk-card">
+          <article class="talk-card">
           <img class="talk-preview-image" src="talks/t5.png" alt="Talk 5 cover" loading="lazy" decoding="async" fetchpriority="low" />
           <h3>Photon propagation in neutron stars magnetosphere and Dirac materials</h3>
           <p class="talk-meta">Dark Matter and Gravitational Waves (DMGW) group meeting, 2024.</p>
@@ -256,7 +258,9 @@
             <a class="btn btn-ghost" href="talks/t5.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
             <a class="btn btn-ghost" href="talks/t5.pdf" download>Download PDF</a>
           </div>
-        </article>
+          </article>
+        </div>
+        <button class="scroll-arrow scroll-arrow-next" type="button" aria-label="Next talks">&#10095;</button>
       </div>
     </section>
 
@@ -267,8 +271,10 @@
       </div>
       <p class="section-note">
       </p>
-      <div class="posters-grid">
-        <article class="poster-card">
+      <div class="scroll-carousel" data-scroll-carousel>
+        <button class="scroll-arrow scroll-arrow-prev" type="button" aria-label="Previous posters">&#10094;</button>
+        <div class="posters-grid" tabindex="0">
+          <article class="poster-card">
           <a class="poster-image-link" href="posters/p5.png" target="_blank" rel="noopener noreferrer">
             <img class="poster-image" src="posters/p5.png" alt="Poster 5 preview" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
@@ -279,7 +285,7 @@
           </div>
         </article>
 
-        <article class="poster-card">
+          <article class="poster-card">
           <a class="poster-image-link" href="posters/p1.png" target="_blank" rel="noopener noreferrer">
             <img class="poster-image" src="posters/p1.png" alt="Poster 1 preview" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
@@ -290,7 +296,7 @@
           </div>
         </article>
 
-        <article class="poster-card">
+          <article class="poster-card">
           <a class="poster-image-link" href="posters/p2.png" target="_blank" rel="noopener noreferrer">
             <img class="poster-image" src="posters/p2.png" alt="Poster 2 preview" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
@@ -301,7 +307,7 @@
           </div>
         </article>
 
-        <article class="poster-card">
+          <article class="poster-card">
           <a class="poster-image-link" href="posters/p3.png" target="_blank" rel="noopener noreferrer">
             <img class="poster-image" src="posters/p3.png" alt="Poster 3 preview" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
@@ -312,7 +318,7 @@
           </div>
         </article>
 
-        <article class="poster-card">
+          <article class="poster-card">
           <a class="poster-image-link" href="posters/p4.png" target="_blank" rel="noopener noreferrer">
             <img class="poster-image" src="posters/p4.png" alt="Poster 4 preview" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
@@ -321,7 +327,9 @@
           <div class="button-row">
             <a class="btn btn-ghost" href="posters/p4.pdf" download>Download PDF</a>
           </div>
-        </article>
+          </article>
+        </div>
+        <button class="scroll-arrow scroll-arrow-next" type="button" aria-label="Next posters">&#10095;</button>
       </div>
     </section>
 
@@ -364,7 +372,5 @@
   </footer>
 </body>
 </html>
-
-
 
 

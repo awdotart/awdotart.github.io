@@ -257,6 +257,45 @@ function setupCarousel(carousel) {
 
 document.querySelectorAll('.carousel').forEach(setupCarousel);
 
+function setupScrollCarousel(carousel) {
+  const scrollArea = carousel.querySelector('.talks-grid, .posters-grid');
+  const prevButton = carousel.querySelector('.scroll-arrow-prev');
+  const nextButton = carousel.querySelector('.scroll-arrow-next');
+
+  if (!scrollArea || !prevButton || !nextButton) {
+    return;
+  }
+
+  function getStep() {
+    const firstCard = scrollArea.querySelector('.talk-card, .poster-card');
+    const styles = getComputedStyle(scrollArea);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+    return firstCard ? firstCard.getBoundingClientRect().width + gap : scrollArea.clientWidth * 0.8;
+  }
+
+  function updateButtons() {
+    const maxScroll = scrollArea.scrollWidth - scrollArea.clientWidth - 2;
+    prevButton.disabled = scrollArea.scrollLeft <= 2;
+    nextButton.disabled = scrollArea.scrollLeft >= maxScroll;
+  }
+
+  function scrollByDirection(direction) {
+    scrollArea.scrollBy({
+      left: getStep() * direction,
+      behavior: 'smooth',
+    });
+  }
+
+  prevButton.addEventListener('click', () => scrollByDirection(-1));
+  nextButton.addEventListener('click', () => scrollByDirection(1));
+  scrollArea.addEventListener('scroll', updateButtons, { passive: true });
+  window.addEventListener('resize', updateButtons);
+  window.addEventListener('load', updateButtons);
+  updateButtons();
+}
+
+document.querySelectorAll('[data-scroll-carousel]').forEach(setupScrollCarousel);
+
 function setupLightbox() {
   const carouselImages = Array.from(document.querySelectorAll('.carousel .card img'));
 
