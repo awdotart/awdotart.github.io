@@ -202,9 +202,9 @@ h1 {
 }
 
 .hero-random-quote {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: clamp(1.08rem, 1.55vw, 1.25rem);
   font-style: italic;
   line-height: 1.45;
   max-width: 62ch;
