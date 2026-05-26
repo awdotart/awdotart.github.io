@@ -9,16 +9,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=20260330-1" />
   <script src="script.js?v=20260220-1" defer></script>
+  <style>
+    .hero.hero-compact {
+      min-height: auto;
+      padding-bottom: 4rem;
+    }
+
+    .hero.hero-compact .hero-content {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="noise"></div>
 
-  <header class="hero" id="home">
+  <header class="hero hero-compact" id="home">
     <nav class="topbar">
       <a class="logo" href="index.html">A. W. R. Jorge</a>
       <div class="menu">
         <a href="index.html">Home</a>
-        <a href="skills.html">Skills</a>
         <a href="index.html#papers">Papers</a>
         <a href="beyond-physics.html">Beyond Physics</a>
         <a href="arte.html">AW Art</a>

@@ -9,16 +9,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=20260313-2" />
   <script src="script.js?v=20260220-1" defer></script>
+  <style>
+    .hero.hero-compact {
+      min-height: auto;
+      padding-bottom: 4rem;
+    }
+
+    .hero.hero-compact .hero-content {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="noise"></div>
 
-  <header class="hero" id="home">
+  <header class="hero hero-compact" id="home">
     <nav class="topbar">
       <a class="logo" href="index.html">A. W. R. Jorge</a>
       <div class="menu">
         <a href="index.html">Home</a>
-        <a href="skills.html">Skills</a>
         <a href="index.html#papers">Papers</a>
         <a href="beyond-physics.html">Beyond Physics</a>
         <a class="active" href="arte.html">AW Art</a>
@@ -138,15 +148,16 @@
           <div class="carousel" data-autoplay="1800">
             <div class="carousel-window">
               <div class="track">
-                <article class="card" data-year="2021"><img data-src="po1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 1" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po2.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 2" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po3.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 3" loading="lazy" decoding="async" fetchpriority="low" /></article>
+                 <article class="card" data-year="2021"><img data-src="po9.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 8" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po4.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 4" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po5.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 5" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po6.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 6" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po7.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 7" loading="lazy" decoding="async" fetchpriority="low" /></article>
                 <article class="card" data-year="2021"><img data-src="po8.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 8" loading="lazy" decoding="async" fetchpriority="low" /></article>
-                <article class="card" data-year="2021"><img data-src="po9.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 9" loading="lazy" decoding="async" fetchpriority="low" /></article>
+                <article class="card" data-year="2021"><img data-src="po1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Portraits 1" loading="lazy" decoding="async" fetchpriority="low" /></article>
+
               </div>
             </div>
             <button class="control prev" type="button" aria-label="Previous slide">&#10094;</button>

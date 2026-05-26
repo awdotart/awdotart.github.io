@@ -9,16 +9,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=20260313-2" />
   <script src="script.js?v=20260220-1" defer></script>
+  <style>
+    .hero.hero-compact {
+      min-height: auto;
+      padding-bottom: 4rem;
+    }
+
+    .hero.hero-compact .hero-content {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="noise"></div>
 
-  <header class="hero" id="home">
+  <header class="hero hero-compact" id="home">
     <nav class="topbar">
       <a class="logo" href="index.html">A. W. R. Jorge</a>
       <div class="menu">
         <a href="index.html">Home</a>
-        <a href="skills.html">Skills</a>
         <a href="index.html#papers">Papers</a>
         <a class="active" href="beyond-physics.html">Beyond Physics</a>
         <a href="#videos">2D Animation Videos</a>
@@ -30,34 +40,96 @@
       <p class="eyebrow">Beyond Physics</p>
       <h1>General life and creative space</h1>
       <p class="lead">
-        A space to share interests beyond the lab: cycling, the Xima board game (book sharing), and art.
+        A space to share interests beyond the physics: cycling, art, photography, board games,  and more. </a>
       </p>
       <div class="button-row">
-        <a class="btn" href="#cycling">Cycling</a>
-        <a class="btn btn-ghost" href="#xima">Xima & Books</a>
+        <a class="btn btn-ghost" href="#cycling">Cycling</a>
         <a class="btn btn-ghost" href="#videos">2D Animation Videos</a>
         <a class="btn btn-ghost" href="#art-general">Art highlights</a>
-        <a class="btn btn-ghost" href="#cocktails">Cocktails</a>
         <a class="btn btn-ghost" href="arte.html">AW Art</a>
+          <a class="btn btn-ghost" href="#xima">Xima & Books</a>
       </div>
     </div>
   </header>
 
   <main>
+    
+
+    
+
+    <section class="section reveal section-media-contain" id="videos">
+      <div class="section-heading">
+        <h2>2D Animation Videos</h2>
+      </div>
+      <p class="section-note">    Original 2D animation videos and short projects.</p>
+      <div class="media-grid">
+        <article class="media-card">
+          <a href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part1.mp4" target="_blank" rel="noopener noreferrer" aria-label="Open SDG5 Video Part 1">
+            <img class="media-video media-cover" src="vi1.jpg" onerror="this.onerror=null;this.src='v1.jpg';" alt="SDG5 Video Part 1 cover" loading="lazy" decoding="async" fetchpriority="low" />
+          </a>
+          <h3>SDG5 Video Part 1</h3>
+          <p><a class="text-link" href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part1.mp4" target="_blank" rel="noopener noreferrer">Watch video</a></p>
+        </article>
+        <article class="media-card">
+          <a href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part2.mp4" target="_blank" rel="noopener noreferrer" aria-label="Open SDG5 Video Part 2">
+            <img class="media-video media-cover" src="vi2.jpg" onerror="this.onerror=null;this.src='v2.jpg';" alt="SDG5 Video Part 2 cover" loading="lazy" decoding="async" fetchpriority="low" />
+          </a>
+          <h3>SDG5 Video Part 2</h3>
+          <p><a class="text-link" href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part2.mp4" target="_blank" rel="noopener noreferrer">Watch video</a></p>
+        </article>
+        <article class="media-card">
+          <a href="https://www.youtube.com/shorts/BGWevu4iptU" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube Shorts video">
+            <img class="media-video media-cover" src="vi3.jpg" onerror="this.onerror=null;this.src='v3.jpg';" alt="YouTube Shorts cover" loading="lazy" decoding="async" fetchpriority="low" />
+          </a>
+          <h3>YouTube Shorts</h3>
+          <p><a class="text-link" href="https://www.youtube.com/shorts/BGWevu4iptU" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="art-general">
+      <div class="section-heading">
+        <h2>Art highlights</h2>
+      </div>
+      <p class="section-note">Art is my passion beyond physics. A quick preview; for the full collection, open <a class="text-link" href="arte.html">AW Art</a>.</p>
+
+      <div class="carousel" data-autoplay="4100">
+        <div class="carousel-window">
+          <div class="track">
+            <article class="card"><img data-src="oil1.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Oil</p></article>
+            <article class="card"><img data-src="ac1.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Acrylic</p></article>
+            <article class="card"><img data-src="po9.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Portraits</p></article>
+            <article class="card"><img data-src="ab4.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 4" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Abstract</p></article>
+            <article class="card"><img data-src="bw1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 5" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Chiaroscuro</p></article>
+            <article class="card"><img data-src="light1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 6" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Light Art</p></article>
+          </div>
+        </div>
+        <button class="control prev" type="button" aria-label="Previous slide">&#10094;</button>
+        <button class="control next" type="button" aria-label="Next slide">&#10095;</button>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </section>
+
     <section class="section reveal" id="cycling">
       <div class="section-heading">
         <h2>Cycling</h2>
       </div>
-      <p class="section-note">First three photos are in Cuba; the last three are in Germany.</p>
+      <p class="section-note">     Cycling as a way to explore, disconnect, and feel free.</p>
       <div class="carousel carousel-contain" data-autoplay="3100">
         <div class="carousel-window">
           <div class="track">
-            <article class="card"><img data-src="cic1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Cuba 01</p></article>
-            <article class="card"><img data-src="cic2.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Cuba 02</p></article>
-            <article class="card"><img data-src="cic3.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Cuba 03</p></article>
-            <article class="card"><img data-src="cic4.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Germany 01</p></article>
-            <article class="card"><img data-src="cic5.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Germany 02</p></article>
-            <article class="card"><img data-src="cic6.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Germany 03</p></article>
+            <article class="card"><img data-src="cic3.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Caimito, Artemisa, Cuba</p></article>
+            <article class="card"><img data-src="cic5.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Großer Feldberg, Schmitten, Germany</p></article>
+            <article class="card"><img data-src="cic7.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Cologne, Germany </p></article>
+            <article class="card"><img data-src="cic8.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Friedberg Castle, Germany</p></article>
+            <article class="card"><img data-src="cic9.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Vilbel Castle, Bad Vilbel, Germany</p></article>
+            <article class="card"><img data-src="cic10.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Burgruine Falkenstein, Germany</p></article>
+            <article class="card"><img data-src="cic11.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Johannisburg Castle, Aschaffenburg, Germany</p></article>
+            <article class="card"><img data-src="cic4.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Germany 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Frankestein Castle, Germany</p></article>
+            <article class="card"><img data-src="cic12.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption"> National Botanical Garden, Havana, Cuba</p></article>
+            <article class="card"><img data-src="cic13.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Coronela lake, Artemisa, Cuba</p></article>
+            <article class="card"><img data-src="cic2.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Cycling Cuba 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">La Guayaba, Havana, Cuba</p></article>
+
           </div>
         </div>
         <button class="control prev" type="button" aria-label="Previous slide">&#10094;</button>
@@ -149,66 +221,11 @@
 
     </section>
 
-    <section class="section reveal section-media-contain" id="videos">
-      <div class="section-heading">
-        <h2>2D Animation Videos</h2>
-      </div>
-      <p class="section-note">A selection of 2D animation videos and shorts.</p>
-      <div class="media-grid">
-        <article class="media-card">
-          <a href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part1.mp4" target="_blank" rel="noopener noreferrer" aria-label="Open SDG5 Video Part 1">
-            <img class="media-video media-cover" src="vi1.jpg" onerror="this.onerror=null;this.src='v1.jpg';" alt="SDG5 Video Part 1 cover" loading="lazy" decoding="async" fetchpriority="low" />
-          </a>
-          <h3>SDG5 Video Part 1</h3>
-          <p><a class="text-link" href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part1.mp4" target="_blank" rel="noopener noreferrer">Watch video</a></p>
-        </article>
-        <article class="media-card">
-          <a href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part2.mp4" target="_blank" rel="noopener noreferrer" aria-label="Open SDG5 Video Part 2">
-            <img class="media-video media-cover" src="vi2.jpg" onerror="this.onerror=null;this.src='v2.jpg';" alt="SDG5 Video Part 2 cover" loading="lazy" decoding="async" fetchpriority="low" />
-          </a>
-          <h3>SDG5 Video Part 2</h3>
-          <p><a class="text-link" href="https://mujeres-en-ciencias.org/wp-content/uploads/2024/06/SDG5_Video_Part2.mp4" target="_blank" rel="noopener noreferrer">Watch video</a></p>
-        </article>
-        <article class="media-card">
-          <a href="https://www.youtube.com/shorts/BGWevu4iptU" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube Shorts video">
-            <img class="media-video media-cover" src="vi3.jpg" onerror="this.onerror=null;this.src='v3.jpg';" alt="YouTube Shorts cover" loading="lazy" decoding="async" fetchpriority="low" />
-          </a>
-          <h3>YouTube Shorts</h3>
-          <p><a class="text-link" href="https://www.youtube.com/shorts/BGWevu4iptU" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="art-general">
-      <div class="section-heading">
-        <h2>Art highlights</h2>
-      </div>
-      <p class="section-note">A quick preview; for the full collection, open <a class="text-link" href="arte.html">AW Art</a>.</p>
-      <div class="button-row">
-        <a class="btn btn-secondary" href="arte.html">Go to AW Art</a>
-      </div>
-      <div class="carousel" data-autoplay="4100">
-        <div class="carousel-window">
-          <div class="track">
-            <article class="card"><img data-src="oil1.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 1" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Oil</p></article>
-            <article class="card"><img data-src="ac1.jpeg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 2" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Acrylic</p></article>
-            <article class="card"><img data-src="po1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 3" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Portraits</p></article>
-            <article class="card"><img data-src="ab1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 4" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Abstract</p></article>
-            <article class="card"><img data-src="bw1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 5" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Chiaroscuro</p></article>
-            <article class="card"><img data-src="light1.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Art highlight 6" loading="lazy" decoding="async" fetchpriority="low" /><p class="caption">Light Art</p></article>
-          </div>
-        </div>
-        <button class="control prev" type="button" aria-label="Previous slide">&#10094;</button>
-        <button class="control next" type="button" aria-label="Next slide">&#10095;</button>
-        <div class="dots" aria-hidden="true"></div>
-      </div>
-    </section>
-
     <section class="section reveal" id="cocktails">
       <div class="section-heading">
         <h2>Cocktails</h2>
       </div>
-      <p class="section-note">Cocktails collection.</p>
+      <p class="section-note">  Cocktails collection created during the COVID-19 pandemic.</p>
       <div class="carousel carousel-contain" data-autoplay="3300">
         <div class="carousel-window">
           <div class="track">
