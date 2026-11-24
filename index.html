@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260523-1" />
+  <link rel="stylesheet" href="styles-light.css?v=9" />
   <script src="script.js?v=20260523-1" defer></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
 
   <header class="hero" id="home">
     <nav class="topbar">
-      <a class="logo" href="index.html">A. W. R. Jorge</a>
+      <a class="logo" href="index.html">A. W. Romero Jorge</a>
       <div class="menu">
         <a class="active" href="index.html">Home</a>
         <a href="#papers">Papers</a>
@@ -27,42 +27,46 @@
       </div>
     </nav>
 
-    <figure class="hero-header-image reveal" aria-label="FIAS campus">
-      <img src="fias.jpeg" alt="FIAS campus building" loading="eager" decoding="async" fetchpriority="high" />
-    </figure>
-
     <div class="hero-grid reveal">
       <div class="hero-content hero-text">
         <h1 class="hero-name">Adrian William Romero Jorge</h1>
         <p class="lead">
-          Ph.D. Researcher: I work on theoretical physics, heavy-ion collisions, and dark matter.
+          I work on dark matter, theoretical physics and heavy-ion collisions.
         </p>
+		       <section class="research-advisors" aria-labelledby="scientific-advisors">
+          <h2 id="scientific-advisors">Scientific advisors</h2>
+          <ul>
+            <li><a class="text-link" href="https://theory.gsi.de/~ebratkov/index.html" target="_blank" rel="noopener noreferrer">Prof. Dr. Elena Bratkovskaya</a></li>
+            <li><a class="text-link" href="https://dmgw.space/group/laura_sagunski" target="_blank" rel="noopener noreferrer">Prof. Dr. Laura Sagunski</a></li>
+          </ul>
+        </section>
         <div class="research-interests" aria-label="Research interests">
           <h2>Research interests</h2>
           <ul class="interest-list">
-            <li>High-energy nuclear physics</li>
+		    <li>Dark matter phenomenology</li>
+            <li>Vector-portal models and dark photons</li>
+	        <li>High-energy nuclear physics</li>
             <li>Heavy-ion collisions</li>
             <li>Transport theory and microscopic simulations</li>
-            <li>Dilepton production in nuclear collisions</li>
-            <li>Dark matter phenomenology</li>
-            <li>Dark sector physics</li>
-            <li>Vector-portal models and dark photons</li>
-            <li>Cosmological and astrophysical constraints on dark matter</li>
+            <li>Dilepton production in HICs</li>
+            <li>Cosmological and astrophysical constraints on dark matter</li>			
           </ul>
         </div>
+ 
         <p class="hero-random-quote">
           "We are where we are because of a long chain of random choices."
         </p>
+ 
       </div>
 
       <aside class="profile-card">
         <img class="profile-photo" src="aw_photo.png" alt="Photo of Adrian William Romero Jorge" loading="eager" decoding="async" fetchpriority="high" />
-        <h3>Ph.D. Researcher</h3>
-        <ul class="profile-list">
-          <li>INSPIRE: <a class="text-link" href="https://inspirehep.net/authors/2540791" target="_blank" rel="noopener noreferrer">inspirehep.net/authors/2540791</a></li>
-          <li>LinkedIn: <a class="text-link" href="https://www.linkedin.com/in/adrian-william-romero-jorge-928728290/" target="_blank" rel="noopener noreferrer">@AdrianRomeroJorge</a></li>
-          <li>Scientific advisors:<br /><a class="text-link" href="https://theory.gsi.de/~ebratkov/index.html" target="_blank" rel="noopener noreferrer">Prof. Dr. Elena Bratkovskaya</a><br /><a class="text-link" href="https://dmgw.space/group/laura_sagunski" target="_blank" rel="noopener noreferrer">Prof. Dr. Laura Sagunski</a></li>
-         </ul>
+        <h3 class="profile-role">Ph.D. Researcher</h3>
+        <div class="profile-links" role="group" aria-label="Professional profiles">
+          <a href="https://inspirehep.net/authors/2540791" target="_blank" rel="noopener noreferrer">INSPIRE</a>
+          <a href="https://www.linkedin.com/in/adrian-william-romero-jorge-928728290/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://orcid.org/0009-0006-3831-9043" target="_blank" rel="noopener noreferrer">ORCID</a>
+        </div>
         <a class="btn btn-secondary profile-cv-btn" href="CV_Romero_Jorge.pdf" download>Download CV</a>
       </aside>
     </div>
@@ -78,7 +82,7 @@
       </div>
       <div class="papers-feature-grid">
         <article class="paper-card paper-feature-card">
-          <a class="paper-figure-link" href="papers/p1.png" target="_blank" rel="noopener noreferrer">
+          <a class="paper-figure-link" href="https://journals.aps.org/prd/abstract/10.1103/dmzt-4wsz" target="_blank" rel="noopener noreferrer">
             <img class="paper-figure" src="papers/p1.png" alt="Dark photon combined constraints figure" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
           <div class="paper-content">
@@ -94,7 +98,7 @@
         </article>
 
         <article class="paper-card paper-feature-card">
-          <a class="paper-figure-link" href="papers/p2.png" target="_blank" rel="noopener noreferrer">
+          <a class="paper-figure-link" href="https://doi.org/10.1103/qzzg-h1xw" target="_blank" rel="noopener noreferrer">
             <img class="paper-figure" src="papers/p2.png" alt="Dark photon kinetic mixing constraints figure" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
           <div class="paper-content">
@@ -110,8 +114,8 @@
         </article>
 
         <article class="paper-card paper-feature-card">
-          <a class="paper-figure-link" href="papers/p3.png" target="_blank" rel="noopener noreferrer">
-            <img class="paper-figure" src="papers/p3.png" alt="Electromagnetic emission in heavy-ion collisions figure" loading="lazy" decoding="async" fetchpriority="low" />
+          <a class="paper-figure-link" href="https://doi.org/10.1103/PhysRevC.111.064904" target="_blank" rel="noopener noreferrer">
+            <img class="paper-figure" src="Energy_Density_AuAu200GeV.gif" alt="Animation of the energy density in an Au+Au collision at 200 GeV" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
           <div class="paper-content">
             <p class="paper-meta">2025 · Phys. Rev. C 111,  064904</p>
@@ -126,7 +130,7 @@
         </article>
 
         <article class="paper-card paper-feature-card">
-          <a class="paper-figure-link" href="papers/p4.png" target="_blank" rel="noopener noreferrer">
+          <a class="paper-figure-link" href="https://doi.org/10.1103/PhysRevA.110.012201" target="_blank" rel="noopener noreferrer">
             <img class="paper-figure" src="papers/p4.png" alt="Dirac materials nonlinear electrodynamics figure" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
           <div class="paper-content">
@@ -142,7 +146,7 @@
         </article>
 
         <article class="paper-card paper-feature-card">
-          <a class="paper-figure-link" href="papers/p5.png" target="_blank" rel="noopener noreferrer">
+          <a class="paper-figure-link" href="https://doi.org/10.1002/asna.201913736" target="_blank" rel="noopener noreferrer">
             <img class="paper-figure" src="papers/p5.png" alt="Magnetized vacuum magnetosphere photon delay figure" loading="lazy" decoding="async" fetchpriority="low" />
           </a>
           <div class="paper-content">
@@ -434,23 +438,7 @@
           </div>
         </article>
       </div>
-
-      <div class="events-compact">
-        <h3>Earlier talks & posters</h3>
-        <ul class="event-list">
-          <li><span>2022</span> II Workshop on Heavy Ions Physics and Compact Stars — Talk, Havana, Cuba.</li>
-          <li><span>2022</span> II German-Cuban Summer School — Talk, Havana, Cuba.</li>
-          <li><span>2021</span> AENTA Award Proposals — Talk, Havana, Cuba.</li>
-          <li><span>2021</span> XXXVII Student Scientific Workshop — Talk, University of Havana.</li>
-          <li><span>2021</span> VI Student Congress of Scientific and Technological Research — Online talk.</li>
-          <li><span>2020</span> I Workshop on Heavy Ions Physics and Compact Stars — Talk, Havana, Cuba.</li>
-          <li><span>2020</span> XV Symposium of the Cuban Physics Society — Poster, Havana, Cuba.</li>
-          <li><span>2019</span> SMFNS/STARS Symposium — Talk, Varadero, Cuba.</li>
-          <li><span>2019</span> XXXV Student Scientific Workshop — Talk, University of Havana.</li>
-          <li><span>2018</span> XXXIV Student Scientific Workshop — Talk, ICIMAF.</li>
-          <li><span>2017</span> XXXIII Student Scientific Workshop — Talk, University of Havana.</li>
-        </ul>
-      </div>
+ 
     </section>
 
     <section class="section reveal" id="education">
@@ -458,13 +446,15 @@
         <h2>Education</h2>
       </div>
       <div class="education-timeline">
-        <article class="education-card">
-           <img class="event-photo" src="events/l16.jpeg" alt="ICHEP event photo" loading="lazy" decoding="async" fetchpriority="low" />
-          <p class="education-year">2023 - present</p>
-          <h3>Ph.D. Student</h3>
-          <p>Goethe University Frankfurt, Germany.</p>
-          <p class="education-note">Supervisors: Prof. Dr. Elena Bratkovskaya and Prof. Dr. Laura Sagunski.</p>
+	  
+         <article class="education-card">
+                         <img class="event-photo" src="events/l15.jpeg" alt="ICHEP event photo" loading="lazy" decoding="async" fetchpriority="low" />
+          <p class="education-year">2016 - 2021</p>
+          <h3>B.S. Physics</h3>
+          <p>University of Havana, Cuba.</p>
+          <p class="education-note">Five-year degree plus thesis. Supervisors: Prof. Dr. A. Martinez Perez and Prof. Dr. E. Rodriguez Querts.</p>
         </article>
+		
         <article class="education-card">
                          <img class="event-photo" src="events/l14.jpeg" alt="ICHEP event photo" loading="lazy" decoding="async" fetchpriority="low" />
           <p class="education-year">2022 - 2023</p>
@@ -472,13 +462,15 @@
           <p>University of Havana, Cuba.</p>
           <p class="education-note">Supervisors: Prof. Dr. A. Martinez Perez and Prof. Dr. E. Rodriguez Querts.</p>
         </article>
+
         <article class="education-card">
-                         <img class="event-photo" src="events/l15.jpeg" alt="ICHEP event photo" loading="lazy" decoding="async" fetchpriority="low" />
-          <p class="education-year">2016 - 2021</p>
-          <h3>B.S. Physics</h3>
-          <p>University of Havana, Cuba.</p>
-          <p class="education-note">Five-year degree plus thesis. Supervisors: Prof. Dr. A. Martinez Perez and Prof. Dr. E. Rodriguez Querts.</p>
-        </article>
+           <img class="event-photo" src="events/l16.jpeg" alt="ICHEP event photo" loading="lazy" decoding="async" fetchpriority="low" />
+          <p class="education-year">2023 - present</p>
+          <h3>Ph.D. Student</h3>
+          <p>Goethe University Frankfurt, Germany.</p>
+          <p class="education-note">Supervisors: Prof. Dr. Elena Bratkovskaya and Prof. Dr. Laura Sagunski.</p>
+        </article>		
+		
       </div>
     </section>
 
